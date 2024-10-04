@@ -11,19 +11,15 @@ type Server interface {
 
 func UnmarshalJSON(data []byte) (Server, Type, error) {
 
-	type Tag struct {
-		Type Type `json:"type"`
-	}
+	var t tag
 
-	var tag Tag
-
-	if err := json.Unmarshal(data, &tag); err != nil {
-		return nil, tag.Type, err
+	if err := json.Unmarshal(data, &t); err != nil {
+		return nil, t.Type, err
 	}
 
 	var out Server
 
-	switch tag.Type {
+	switch t.Type {
 
 	case TypeServerError:
 		out = new(ServerError)
@@ -95,14 +91,14 @@ func UnmarshalJSON(data []byte) (Server, Type, error) {
 		out = new(ServerRateLimitsUpdated)
 
 	default:
-		return nil, tag.Type, fmt.Errorf("unknown server message ype %q", tag.Type)
+		return nil, t.Type, fmt.Errorf("unknown server message ype %q", t.Type)
 
 	}
 
 	if err := json.Unmarshal(data, out); err != nil {
-		return nil, tag.Type, err
+		return nil, t.Type, err
 	}
 
-	return out, tag.Type, nil
+	return out, t.Type, nil
 
 }

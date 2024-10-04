@@ -13,3 +13,7 @@ func String(v string) *string {
 func Uint32(v uint32) *uint32 {
 	return &v
 }
+
+type tag struct {
+	Type Type `json:"type"`
+}
