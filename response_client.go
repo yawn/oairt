@@ -3,15 +3,14 @@ package oairt
 const TypeClientResponseCreate Type = "response.create"
 
 type ClientResponseCreate struct {
-	EventID  string    `json:"event_id"`
-	Type     Type      `json:"type"`
-	Response *Response `json:"response"`
+	EventID  string          `json:"event_id"`
+	Type     Type            `json:"type"`
+	Response *ClientResponse `json:"response"`
 }
 
 func (c *ClientResponseCreate) isClient() {}
 
-type Response struct { // NOTE: breaking with the naming schema a bit
-	ID                string       `json:"id"`
+type ClientResponse struct {
 	Modalities        []string     `json:"modalities"`
 	Instructions      string       `json:"instructions"`
 	Voice             *string      `json:"voice,omitempty"`
