@@ -14,7 +14,7 @@ type ServerRateLimit struct {
 	Name         ServerRateLimitName `json:"name"`
 	Limit        uint32              `json:"limit"`
 	Remaining    uint32              `json:"remaining"`
-	ResetSeconds uint32              `json:"reset_seconds"`
+	ResetSeconds float64             `json:"reset_seconds"` // NOTE: deviation from the docs
 }
 
 type ServerRateLimitName = string
