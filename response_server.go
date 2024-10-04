@@ -6,11 +6,12 @@ type ServerResponseCreated struct {
 	EventID  string          `json:"event_id"`
 	Type     Type            `json:"type"`
 	Response *ServerResponse `json:"response"`
+	Usage    map[string]any  `json:"usage"`
 }
 
 func (s *ServerResponseCreated) isServer() {}
 
-const TypeServerResponse Type = "response.done"
+const TypeServerResponse Type = "realtime.response"
 
 type ServerResponse struct {
 	ID            string           `json:"id"`
@@ -18,8 +19,18 @@ type ServerResponse struct {
 	Status        *ResponseStatus  `json:"status"`
 	StatusDetails map[string]any   `json:"status_details"`
 	Output        []map[string]any `json:"output"` // NOTE: rendering for the outputs broken for me
-	Usage         map[string]any   `json:"usage"`
 }
+
+const TypeServerResponseDone Type = "response.done"
+
+type ServerResponseDone struct {
+	EventID  string          `json:"event_id"`
+	Type     Type            `json:"type"`
+	Response *ServerResponse `json:"response"`
+	Usage    map[string]any  `json:"usage"`
+}
+
+func (s *ServerResponseDone) isServer() {}
 
 const TypeServerResponseOutputItemAdded Type = "response.output_item.added"
 

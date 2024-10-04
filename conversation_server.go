@@ -1,6 +1,6 @@
 package oairt
 
-const TypeServerConversationItemCreated Type = "conversation.created"
+const TypeServerConversationCreated Type = "conversation.created"
 
 type ServerConversationCreated struct {
 	EventID      string              `json:"event_id"`
@@ -16,6 +16,8 @@ type ServerConversation struct {
 	ID     string `json:"id"`
 	Object Type   `json:"object"`
 }
+
+const TypeServerConversationItemCreated Type = "conversation.item.created"
 
 type ServerConversationItemCreated struct {
 	EventID        string                  `json:"event_id"`
