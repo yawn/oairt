@@ -9,17 +9,27 @@ type ClientConversationItemCreate struct {
 	Item           *ClientConversationItem `json:"item"`
 }
 
+func (c *ClientConversationItemCreate) isClient() {}
+
 type ClientConversationItem struct {
-	ID        string     `json:"id"`
-	Type      Type       `json:"type"`
-	Status    ItemStatus `json:"status"`
-	Role      Role       `json:"role"`
-	Content   []*Content `json:"content"`
-	CallID    *string    `json:"call_id,omitempty"`
-	Name      *string    `json:"name,omitempty"`
-	Arguments *string    `json:"arguments,omitempty"`
-	Output    *string    `json:"output,omitempty"`
+	ID        *string                    `json:"id,omitempty"`
+	Type      ClientConversationItemType `json:"type"`
+	Status    *ItemStatus                `json:"status,omitempty"`
+	Role      Role                       `json:"role"`
+	Content   []*Content                 `json:"content"`
+	CallID    *string                    `json:"call_id,omitempty"`
+	Name      *string                    `json:"name,omitempty"`
+	Arguments *string                    `json:"arguments,omitempty"`
+	Output    *string                    `json:"output,omitempty"`
 }
+
+type ClientConversationItemType = string
+
+const (
+	ClientConversationItemTypeInputMessage            ClientConversationItemType = "message"
+	ClientConversationItemTypeInputFunctionCall       ClientConversationItemType = "function_call"
+	ClientConversationItemTypeInputFunctionCallOutput ClientConversationItemType = "function_call_output"
+)
 
 const TypeClientConversationItemTruncate Type = "conversation.item.truncate"
 
