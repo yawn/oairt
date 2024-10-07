@@ -1,12 +1,12 @@
-package oairt
+package types
 
 import "fmt"
 
-const TypeServerError Type = "error"
+const TypeServerError ServerEventType = "error"
 
 type ServerError struct {
 	EventID string              `json:"event_id"`
-	Type    Type                `json:"type"`
+	Type    ServerEventType     `json:"type"`
 	Details *ServerErrorDetails `json:"error"`
 }
 
@@ -22,8 +22,6 @@ func (s *ServerError) Error() string {
 		details.EventID,
 	)
 }
-
-func (s *ServerError) isServer() {}
 
 type ServerErrorDetails struct {
 	Type    string `json:"type"`

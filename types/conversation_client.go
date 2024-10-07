@@ -1,15 +1,15 @@
-package oairt
+package types
 
-const TypeClientConversationItemCreate Type = "conversation.item.create"
+const TypeClientConversationItemCreate ClientEventType = "conversation.item.create"
 
 type ClientConversationItemCreate struct {
 	EventID        string                  `json:"event_id"`
-	Type           Type                    `json:"type"`
+	Type           ClientEventType         `json:"type"`
 	PreviousItemID string                  `json:"previous_item_id"`
 	Item           *ClientConversationItem `json:"item"`
 }
 
-func (c *ClientConversationItemCreate) isClient() {}
+func (c *ClientConversationItemCreate) isClientEvent() {}
 
 type ClientConversationItem struct {
 	ID        *string                    `json:"id,omitempty"`
@@ -31,24 +31,24 @@ const (
 	ClientConversationItemTypeInputFunctionCallOutput ClientConversationItemType = "function_call_output"
 )
 
-const TypeClientConversationItemTruncate Type = "conversation.item.truncate"
+const TypeClientConversationItemTruncate ClientEventType = "conversation.item.truncate"
 
 type ClientConversationItemTruncate struct {
-	EventID      string `json:"event_id"`
-	Type         Type   `json:"type"`
-	ItemID       string `json:"item_id"`
-	ContentIndex uint32 `json:"content_index"`
-	AudioEndMS   uint32 `json:"audio_end_ms"`
+	EventID      string          `json:"event_id"`
+	Type         ClientEventType `json:"type"`
+	ItemID       string          `json:"item_id"`
+	ContentIndex uint32          `json:"content_index"`
+	AudioEndMS   uint32          `json:"audio_end_ms"`
 }
 
-func (c *ClientConversationItemTruncate) isClient() {}
+func (c *ClientConversationItemTruncate) isClientEvent() {}
 
-const TypeClientConversationItemDelete Type = "conversation.item.delete"
+const TypeClientConversationItemDelete ClientEventType = "conversation.item.delete"
 
 type ClientConversationItemDelete struct {
-	EventID string `json:"event_id"`
-	Type    Type   `json:"type"`
-	ItemID  string `json:"item_id"`
+	EventID string          `json:"event_id"`
+	Type    ClientEventType `json:"type"`
+	ItemID  string          `json:"item_id"`
 }
 
-func (c *ClientConversationItemDelete) isClient() {}
+func (c *ClientConversationItemDelete) isClientEvent() {}

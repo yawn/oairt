@@ -1,20 +1,18 @@
-package oairt
+package types
 
-const TypeServerSessionCreated Type = "session.created"
+const TypeServerSessionCreated ServerEventType = "session.created"
 
 type ServerSessionCreated struct {
-	EventID string         `json:"event_id"`
-	Type    Type           `json:"type"`
-	Session *ServerSession `json:"session"`
+	EventID string          `json:"event_id"`
+	Type    ServerEventType `json:"type"`
+	Session *ServerSession  `json:"session"`
 }
 
-func (s *ServerSessionCreated) isServer() {}
-
-const TypeServerSession Type = "realtime.session"
+const TypeServerSession ObjectType = "realtime.session"
 
 type ServerSession struct {
 	ID                      string                   `json:"id"`
-	Object                  Type                     `json:"object"`
+	Object                  ObjectType               `json:"object"`
 	Model                   string                   `json:"model"`
 	Modalities              []string                 `json:"modalities"`
 	Instructions            string                   `json:"instructions"`
@@ -29,12 +27,10 @@ type ServerSession struct {
 	MaxOutputTokens         uint32                   `json:"max_output_tokens"`
 }
 
-const TypeServerSessionUpdated Type = "session.updated"
+const TypeServerSessionUpdated ServerEventType = "session.updated"
 
 type ServerSessionUpdated struct {
-	EventID string         `json:"event_id"`
-	Type    Type           `json:"type"`
-	Session *ServerSession `json:"session"`
+	EventID string          `json:"event_id"`
+	Type    ServerEventType `json:"type"`
+	Session *ServerSession  `json:"session"`
 }
-
-func (s *ServerSessionUpdated) isServer() {}

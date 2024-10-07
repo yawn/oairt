@@ -1,14 +1,14 @@
-package oairt
+package types
 
-const TypeClientResponseCreate Type = "response.create"
+const TypeClientResponseCreate ClientEventType = "response.create"
 
 type ClientResponseCreate struct {
 	EventID  string          `json:"event_id"`
-	Type     Type            `json:"type"`
+	Type     ClientEventType `json:"type"`
 	Response *ClientResponse `json:"response"`
 }
 
-func (c *ClientResponseCreate) isClient() {}
+func (c *ClientResponseCreate) isClientEvent() {}
 
 type ClientResponse struct {
 	Modalities        []string     `json:"modalities"`
@@ -21,11 +21,11 @@ type ClientResponse struct {
 	MaxOutputTokens   *uint32      `json:"max_output_tokens,omitempty"`
 }
 
-const TypeClientResponseCancel Type = "response.cancel"
+const TypeClientResponseCancel ClientEventType = "response.cancel"
 
 type ClientResponseCancel struct {
-	EventID string `json:"event_id"`
-	Type    Type   `json:"type"`
+	EventID string          `json:"event_id"`
+	Type    ClientEventType `json:"type"`
 }
 
-func (c *ClientResponseCancel) isClient() {}
+func (c *ClientResponseCancel) isClientEvent() {}

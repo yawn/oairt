@@ -1,4 +1,4 @@
-package oairt
+package types
 
 type (
 	AudioFormat = string
@@ -15,10 +15,10 @@ type InputAudioTranscription struct {
 	Model   string `json:"model"`
 }
 
-const TypeTurnDetectionServerVAD Type = "server_vad"
+const TypeTurnDetectionServerVAD string = "server_vad"
 
 type TurnDetection struct {
-	Type              Type    `json:"type"`
+	Type              string  `json:"type"`
 	Threshold         float64 `json:"threshold"`
 	PrefixPaddingMS   uint32  `json:"prefix_padding_ms"`
 	SilenceDurationMS uint32  `json:"silence_duration_ms"`

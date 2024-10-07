@@ -1,14 +1,12 @@
-package oairt
+package types
 
-const TypeServerRateLimitsUpdated Type = "rate_limits.updated"
+const TypeServerRateLimitsUpdated ServerEventType = "rate_limits.updated"
 
 type ServerRateLimitsUpdated struct {
 	EventID    string             `json:"event_id"`
-	Type       Type               `json:"type"`
+	Type       ServerEventType    `json:"type"`
 	RateLimits []*ServerRateLimit `json:"rate_limits"`
 }
-
-func (s *ServerRateLimitsUpdated) isServer() {}
 
 type ServerRateLimit struct {
 	Name         ServerRateLimitName `json:"name"`

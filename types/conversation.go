@@ -1,4 +1,4 @@
-package oairt
+package types
 
 type ItemStatus = string
 

@@ -1,19 +1,19 @@
-package oairt
+package types
 
-const TypeClientSessionUpdate Type = "session.update"
+const TypeClientSessionUpdate ClientEventType = "session.update"
 
 type ClientSessionUpdate struct {
-	EventID string        `json:"event_id"`
-	Type    Type          `json:"type"`
-	Session ClientSession `json:"Clientsession"`
+	EventID string          `json:"event_id"`
+	Type    ClientEventType `json:"type"`
+	Session ClientSession   `json:"session"`
 }
 
-func (c *ClientSessionUpdate) isClient() {}
+func (c *ClientSessionUpdate) isClientEvent() {}
 
 type ClientSession struct {
-	Modalities              []string                 `json:"modalities"`
-	Instructions            string                   `json:"instructions"`
-	Voice                   *string                  `json:"voice,omitempty"`
+	Modalities              []string                 `json:"modalities,omitempty"`
+	Instructions            *string                  `json:"instructions,omitempty"`
+	Voice                   *string                  `json:"voice,omitempty"` // TODO: makes this an enum (alloy, echo, shimmer)
 	InputAudioFormat        *AudioFormat             `json:"input_audio_format,omitempty"`
 	OutputAudioFormat       *AudioFormat             `json:"output_audio_format,omitempty"`
 	InputAudioTranscription *InputAudioTranscription `json:"input_audio_transcription,omitempty"`
